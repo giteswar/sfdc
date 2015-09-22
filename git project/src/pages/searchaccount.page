@@ -1,0 +1,25 @@
+<apex:page standardController="account" tabStyle="account" extensions="accountsearch">
+    <apex:form >
+       <apex:pageBlock id="block">
+            <apex:pageBlockSection title="Search" collapsible="false">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="searchText">Search</apex:outputLabel>
+                     <apex:panelGroup >
+                       <apex:inputText id="searchText" value="{!searchText}"/>
+                        <apex:commandButton value="Search" action="{!search}"  status="s"/>
+                        <apex:actionStatus id="s" startText="Please wait..."/>
+                     </apex:panelGroup>
+                 </apex:pageBlockSectionItem>
+           </apex:pageBlockSection>       
+       <apex:pageBlockSection title="Results" id="resultsBlock" collapsible="false" columns="1" rendered="{!NOT(ISNULL(searchResults))}">
+            <apex:pagemessages />  
+                 <apex:pageBlockTable value="{!searchResults}" var="acc" >             
+                    <apex:column value="{!acc.name}"/>
+                   <apex:column value="{!acc.billingstate}"/>
+                   <apex:column value="{!acc.phone}"/>
+                   <apex:column value="{!acc.website}"/>
+              </apex:pageBlockTable>
+        </apex:pageBlockSection>
+  </apex:pageBlock>
+</apex:form>
+</apex:page>

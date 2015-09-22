@@ -1,0 +1,42 @@
+<apex:page standardController="Account" extensions="AccountExtensions" showHeader="true">
+<apex:form id="form">
+    <!-- Define Tab panel .css styles -->
+    <style>
+    .activeTab {background-color: #236FBD; color:blue; background-image:none}
+    .inactiveTab { background-color: lightgrey; color:black; background-image:none}
+    </style>
+    
+           
+    <!-- Create Tab panel -->
+    <apex:tabPanel switchType="client" id="AccountTabPanel"
+        tabClass="activeTab" inactiveTabClass="inactiveTab">
+        <apex:tab label="One" name="name1" id="tabOne">
+        <apex:commandButton value="new" action="{!clicknewshowfields}" reRender="form"/>
+         <apex:pageBlock title="Accountfields1" rendered="{!fieldsshow}" id="PB1">
+          <apex:pageBlockSection > 
+          <apex:repeat value="{!$ObjectType.Account.FieldSets.Accfieldset1}" var="a1">
+
+                <apex:inputfield value="{!Account[a1]}">
+
+            </apex:inputfield></apex:repeat>
+
+          </apex:pageBlockSection>
+          <apex:commandButton value="save" action="{!save}"/>
+         </apex:pageblock>
+         
+        </apex:tab>
+        <apex:tab label="Two" name="name2" id="tabTwo">
+        <apex:pageBlock title="Accountfields2">
+         <apex:pageblocksection > 
+         <apex:repeat value="{!$ObjectType.Account.FieldSets.Accfieldset2}" var="a2">
+         <apex:inputfield value="{!Account[a2]}">
+
+            </apex:inputfield></apex:repeat>
+
+          </apex:pageBlockSection>
+          <apex:commandButton value="save" action="{!save}"/>
+          </apex:pageBlock>
+         </apex:tab>
+    </apex:tabPanel>
+  </apex:form>
+</apex:page>

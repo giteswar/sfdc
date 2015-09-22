@@ -1,0 +1,16 @@
+<apex:page controller="Ralationship">
+ <apex:form >
+  <apex:pageBlock >
+    <apex:datalist value="{!relist}" var="r">
+    
+     <apex:outputLabel >Account name:{!r.name}</apex:outputLabel>
+    <apex:datalist value="{!r.contacts}" var="c">
+     <apex:outputLabel >contact name:{!c.Name}</apex:outputLabel>
+    </apex:datalist>
+    <apex:datalist value="{!r.opportunities}" var="o">
+     <apex:outputLabel >opporunity amount:{!o.Amount}</apex:outputLabel>
+    </apex:datalist>
+    </apex:datalist>
+  </apex:pageBlock>
+ </apex:form>
+</apex:page>

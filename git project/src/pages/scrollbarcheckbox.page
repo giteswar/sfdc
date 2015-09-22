@@ -1,0 +1,18 @@
+<apex:page >
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="jquery.sumoselect.min.js"></script>
+<link href="sumoselect.css" rel="stylesheet" />
+<apex:form >
+<apex:pageBlock >
+<apex:pageBlockSection >
+<select multiple="multiple" placeholder="Pick a brand" class="SlectBox">
+<option selectedvalue="volvo">Volvo</option>
+<option value="ford">Ford</option>
+<option value="mercedes">Mercedes</option>
+<option value="audi">Audi</option>
+<option value="bmw">BMW</option>
+</select>
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

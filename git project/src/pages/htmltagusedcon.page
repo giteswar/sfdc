@@ -1,0 +1,19 @@
+<apex:page standardController="Account" extensions="actionFunctionTestController">
+    <script type="text/javascript">
+        function callActionFunction() {
+            var n = document.getElementById("input1").value;
+            afunction(n);
+        }
+    </script>
+
+    <apex:form id="aform1">
+        <apex:pageBlock title="Test Page" id="pb1">         
+            <label> Name </label>
+            <input type="text" id="input1" name="input1"/>
+            <button type="submit" onClick="callActionFunction();return false;">Click Me! </button>
+            <apex:actionFunction name="afunction" action="{!receiveInput}" onComplete="alert('Completed');">
+                <apex:param id="aname" name="input1" value="" />
+            </apex:actionFunction>
+         </apex:pageBlock>
+    </apex:form>
+</apex:page>

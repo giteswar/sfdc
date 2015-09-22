@@ -1,0 +1,15 @@
+<apex:page standardController="Contact" docType="html-5.0">
+ 
+<apex:form >
+    <apex:pageBlock title="Simple Validation Demo">
+        <apex:pageBlockButtons location="bottom">
+            <apex:commandButton action="{!cancel}" value="Cancel" immediate="true"
+                    html-formnovalidate="formnovalidate" />
+            <apex:commandButton action="{!save}" value="Save" />
+        </apex:pageBlockButtons>
+        <apex:pageBlockSection >
+            <apex:inputField value="{!Contact.FirstName}" required="true" ></apex:inputField>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

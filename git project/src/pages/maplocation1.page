@@ -1,0 +1,114 @@
+<apex:page standardController="Contact"
+showChat="false"
+sidebar="false"
+showHeader="false"
+standardStylesheets="false">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"/>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.10&sensor=false"/>
+<script src="/soap/ajax/27.0/connection.js" type="text/javascript"/>
+<script src="/soap/ajax/27.0/apex.js" type="text/javascript"/>
+<script type="text/javascript">
+var Contact = {};
+function authorize()
+{ sforce.connection.sessionId = '{!GETSESSIONID()}'; }
+function getContactID()
+{
+Contact.ID = '{!Contact.Id}';
+}
+function fetchContactRecord()
+{
+result = sforce.connection.query('SELECT ID,MailingStreet,MailingCity,MailingState,MailingPostalCode,MailingCountry,Location__Latitude__s,Location__Longitude__s,Mapping_Status__c FROM Contact WHERE ID=\'' + Contact.ID + '\' AND Mapping_Status__c!=\'Located\'');
+records = result.getArray('records');
+if(records.length>0)
+{
+Contact.IsRecordAvailable = true;
+Contact.MailingStreet = records[0].MailingStreet;
+Contact.MailingCity = records[0].MailingCity;
+Contact.MailingState = records[0].MailingState;
+Contact.MailingPostalCode = records[0].MailingPostalCode;
+Contact.MailingCountry = records[0].MailingCountry;
+Contact.MappingStatus = records[0].Mapping_Status__c;
+}
+else
+Contact.IsRecordAvailable = false;
+}
+Contact.isAddressAvailable = function(){
+if (this.MailingCountry!='' && this.MailingPostalCode!='')
+return true;
+else
+return false;
+}
+Contact.isMapped = function(){
+if (this.MappingStatus=='Located' || this.MappingStatus=='Problem with Address')
+return true;
+else
+return false;
+}
+Contact.getCSVAddress = function(){
+if(this.isAddressAvailable())
+{
+return (
+this.MailingStreet +','+
+this.MailingCity +','+
+this.MailingState +','+
+this.MailingPostalCode +','+
+this.MailingCountry
+);
+}
+return 'error';
+}
+function getLatLng()
+{
+geocoder = new google.maps.Geocoder();
+geocoder.geocode(
+{ 'address': Contact.getCSVAddress() },
+function(results, status)
+{
+if (status == google.maps.GeocoderStatus.OK)
+{
+Contact.Latitude = (results[0].geometry.location.lat()).toString();
+Contact.Longitude = (results[0].geometry.location.lng()).toString();
+Contact.MappingStatus = 'Located';
+}
+else if (status == google.maps.GeocoderStatus.ZERO_RESULTS || status == google.maps.GeocoderStatus.INVALID_REQUEST)
+{
+Contact.MappingStatus = 'Problem with Address';
+}
+else if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT)
+{
+Contact.MappingStatus = 'Google Exhausted';
+}
+updateContact();
+});
+}
+function updateContact()
+{
+var mappedContact = new sforce.SObject('Contact');
+mappedContact.Location__Latitude__s = null;
+mappedContact.Location__Longitude__s = null;
+if(Contact.MappingStatus == 'Located')
+{
+mappedContact.Location__Latitude__s = Contact.Latitude;
+mappedContact.Location__Longitude__s = Contact.Longitude;
+}
+mappedContact.id = Contact.ID;
+mappedContact.Mapping_Status__c = Contact.MappingStatus;
+result = sforce.connection.update([mappedContact]);
+if(result[0].getBoolean('success'))
+{
+alert('The Contact\'s new Address has been located Successfully. Please Refresh the Page.');
+}
+}
+$(document).ready(
+function()
+{
+authorize();
+getContactID();
+fetchContactRecord();
+if(Contact.IsRecordAvailable && !Contact.isMapped() && Contact.isAddressAvailable())
+{
+getLatLng();
+}
+});
+</script>
+</apex:page>

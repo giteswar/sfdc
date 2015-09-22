@@ -1,0 +1,19 @@
+<apex:page controller="example23">
+ 
+ 
+<apex:form >
+ 
+ <apex:inputCheckbox value="{!option}" >
+<apex:actionsupport event="onclick" action="{!change}" />
+</apex:inputCheckbox>
+ 
+ 
+<apex:actionRegion rendered="{!bool}">
+ 
+<apex:inputFile value="AttachFile" />
+ 
+ 
+</apex:actionRegion>
+</apex:form>
+ 
+</apex:page>

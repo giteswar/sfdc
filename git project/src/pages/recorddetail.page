@@ -1,0 +1,34 @@
+<apex:page controller="rtt5">
+<apex:form >
+    <apex:pageBlock >
+        <apex:pageBlockButtons >
+        <apex:commandButton value="Customer Direct Account" action="{!direct}"/>
+        <apex:commandButton value="Customer - Channel Account" action="{!channel}"/>       
+        </apex:pageBlockButtons>
+        
+            <apex:pageblocktable value="{!acts}" var="row" >
+            <apex:column >
+            <apex:commandLink value="{!row.name}" action="{!racts1}" rerender="abc">
+                <apex:param value="{!row.id}" name="aid"/>
+                <apex:param value="{!row.name}" name="aname"/>     
+                 <apex:param value="{!row.industry}" name="aindustry"/>               
+             </apex:commandLink>
+            </apex:column>
+             
+              <apex:column value="{!row.type}"/>
+               <apex:column value="{!row.industry}"/>
+            </apex:pageblocktable>
+        
+           <apex:pageblocksection title="{!$CurrentPage.parameters.aname}" id="abc">
+               <apex:detail subject="{!$CurrentPage.parameters.aid}"/>
+                <apex:pageblocktable value="{!racts}" var="row"  >
+               
+              <apex:column value="{!row.Name}"/>
+              <apex:column value="{!row.type}"/>             
+               <apex:column value="{!row.industry}"/>
+                </apex:pageblocktable>              
+           </apex:pageblocksection>
+            
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

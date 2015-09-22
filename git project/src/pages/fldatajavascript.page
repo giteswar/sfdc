@@ -1,0 +1,42 @@
+<apex:page id="name">
+<script>
+function result()
+{
+var input=document.getElementById('name:fm:pb1:pbs1:pbsi1:in1').value;
+document.getElementById('name:fm:pb1:pbs1:pbsi2:in2').value=input;
+document.getElementById('name:fm:pb1:pbs1:out3').innerHTML='my name'+input;
+
+}
+
+</script>
+
+<apex:form id="fm">
+<apex:pageblock id="pb1">
+<apex:pageblocksection id="pbs1">
+
+<apex:pageblocksectionitem id="pbsi1">
+<apex:outputlabel value="enter u r name" id="out1"/>
+<apex:inputtext id="in1" />
+</apex:pageblocksectionitem>
+<br/><br/>
+<br/>
+<br/>
+<br/>
+
+<apex:commandbutton value="submit onclick" id="c1" onclick="result();" reRender="pbsi2"/>
+<apex:commandbutton value="submit oncomplete" id="c2" oncomplete="result();" reRender="pbsi2"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<apex:pageblocksectionitem id="pbsi2">
+<apex:outputlabel value="my name is:" id="out2" />
+<apex:inputtext id="in2" />
+</apex:pageblocksectionitem>
+<apex:outputlabel value="written by js is: " id="out3" /> 
+
+</apex:pageblocksection>
+</apex:pageblock>
+</apex:form>
+</apex:page>

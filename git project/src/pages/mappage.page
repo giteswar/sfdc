@@ -1,0 +1,11 @@
+<apex:page controller="Mapcollection">
+ <apex:form >
+  <apex:selectList value="{!mycity}">
+   <apex:selectOptions value="{!city}"></apex:selectOptions>
+  </apex:selectList><br/>
+  
+  <apex:selectList >
+   <apex:selectOptions value="{!branch}"></apex:selectOptions>
+  </apex:selectList>
+ </apex:form>
+</apex:page>

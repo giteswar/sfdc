@@ -1,0 +1,12 @@
+<!--
+    Created by: Greg Hacic
+    Last Update: 28 March 2014 by Greg Hacic
+    Questions?: greg@interactiveties.com
+
+    Notes:
+        - Directs the User to the standard Lead conversion screen but pre-populates the "Do not create a new opportunity upon conversion." checkbox
+-->
+<apex:page action="{!redirectToConvertionPage}" extensions="leadConvertButtonOverride" standardController="Lead">
+    <apex:sectionHeader title="Convert Lead" subtitle="{!Lead.Name}" help="/htviewhelpdoc?id=leads_convert.htm&siteLang=en_US"></apex:sectionHeader>
+    <apex:pageMessages ></apex:pageMessages>
+</apex:page>

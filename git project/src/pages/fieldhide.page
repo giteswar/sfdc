@@ -1,0 +1,11 @@
+<apex:page controller="Myfield">
+ <apex:form >
+  <apex:pageBlock >
+  
+   Rating:<apex:inputField value="{!fields.rating}" rendered="{!fie1}">
+   <apex:actionSupport action="{!fichange}" event="onchange"/>
+   </apex:inputfield><br/>
+   <apex:inputField value="{!fields.accountnumber}" required="true" rendered="{!fie2}"/>
+  </apex:pageBlock>
+ </apex:form>
+</apex:page>

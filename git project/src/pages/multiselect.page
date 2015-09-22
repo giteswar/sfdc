@@ -1,0 +1,22 @@
+<apex:page controller="dependentone" sidebar="false" showHeader="false">
+  <apex:form >
+     <b> Dependent MultiSelect PickList</b>
+     <br/>
+     Select The Picklist Value(s):
+    <apex:selectList value="{!myVal}" size="2" multiselect="true" title="Select The Picklist Value(s)">
+       <apex:selectOption itemvalue="1s" itemlabel="Ones"/>
+       <apex:selectOption itemvalue="2s" itemlabel="Twos"/>
+       <apex:selectOption itemvalue="3s" itemlabel="Threes"/>
+       <apex:selectOption itemvalue="4s" itemlabel="Fours"/>
+       <apex:selectOption itemvalue="5s" itemlabel="Fives"/>
+       <apex:actionSupport event="onchange" reRender="one"/>
+   </apex:selectList>
+   <br/>
+   <apex:outputpanel id="one"> 
+     <b>The selected value(s) are: </b>
+      <apex:selectList size="1" value="{!selectedDepval}" >
+        <apex:selectOptions value="{!depval}"/>
+      </apex:selectList>
+   </apex:outputpanel>
+ </apex:form>
+</apex:page>

@@ -1,0 +1,12 @@
+<apex:page controller="showpgbtable" >
+ <apex:form >
+  <apex:commandButton value="showtable" action="{!accountlist}" reRender="panel"/>
+   <apex:outputPanel id="panel" > 
+    <apex:pageBlock rendered="{!rendered}" >
+     <apex:pageBlockTable value="{!accounts}" var="a" >
+      <apex:column value="{!a.name}"/>
+     </apex:pageBlockTable>
+    </apex:pageBlock>
+   </apex:outputPanel>
+ </apex:form>
+</apex:page>

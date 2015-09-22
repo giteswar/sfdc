@@ -1,0 +1,17 @@
+<apex:page standardController="studnet__c" extensions="StuDisplayScreenController">
+  <apex:form >
+    <apex:pageBlock >
+      <apex:pageBlockSection title="List of student With a Checkbox">
+       </apex:pageBlockSection>
+         <apex:pageblockTable value="{!stuWrapperList}" var="st">
+          <apex:column value="{!st.stuRec.id}"/>
+         <apex:column value="{!st.stuRec.Name__c}"/>
+         <apex:column value="{!st.stuRec.CourseName__c}"/>
+         
+         <apex:column >
+            <apex:inputCheckbox value="{!st.stuflag}"/>
+         </apex:column>
+     </apex:pageblockTable>
+   </apex:pageBlock>
+  </apex:form>
+</apex:page>

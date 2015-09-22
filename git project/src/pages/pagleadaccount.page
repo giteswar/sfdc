@@ -1,0 +1,7 @@
+<apex:page controller="GenericPaginationUsageContrl" tabStyle="Account">
+<!-- Default name space is : C ; Referring the Visualforce Component -->
+<!--<c:GenericPaginationComponent records="{!accLst}" fields="{!accFieldLst}" title="Accounts"/>
+<c:GenericPaginationComponent records="{!conLst}" fields="{!conFieldLst}" title="Contacts"/>
+<c:GenericPaginationComponent records="{!oppLst}" fields="{!oppFieldLst}" title="Opportunities"/>-->
+
+</apex:page>

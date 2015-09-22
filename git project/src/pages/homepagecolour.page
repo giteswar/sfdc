@@ -1,0 +1,35 @@
+<apex:page controller="ContacControllerWrapper">
+<apex:form >
+    <apex:pageBlock >
+    <apex:pageBlockSection >
+        <apex:pageBlockTable value="{!contactList}" var="ctList">
+            <apex:column >
+            <apex:inputCheckbox value="{!ctList.selected}" onclick="valuetransfered();"/>
+            </apex:column>
+            <apex:column >
+            <apex:outputField value="{!ctList.ct.FirstName}"/>
+            </apex:column>
+            <apex:column >
+            <apex:outputField value="{!ctList.ct.LastName}"/>
+            </apex:column>
+        </apex:pageBlockTable>
+    </apex:pageBlockSection>
+    </apex:pageBlock>
+    <apex:actionFunction name="valuetransfered" action="{!contactsSelected}" reRender="section1"/>
+    <apex:pageBlock id="section1">
+        <apex:pageBlockSection rendered="true">
+            <apex:pageBlockTable value="{!selectedContacts}" var="selCt">
+                <apex:column >
+                <apex:outputField value="{!selCt.FirstName}"/>
+                </apex:column>
+                <apex:column >
+                <apex:outputField value="{!selCt.LastName}"/>
+                </apex:column>
+                  <apex:column >
+                <apex:outputField value="{!selCt.Email}"/>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

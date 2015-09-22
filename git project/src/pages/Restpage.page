@@ -1,0 +1,18 @@
+<apex:page controller="BottleRestOtherOrg1" sidebar="false" showHeader="true" tabStyle="Bottle_Rest__c">
+    <apex:form >
+        <apex:sectionHeader title="Bottle REST Edit" subtitle="New Bottle REST"/>
+        <apex:pageMessages ></apex:pageMessages>
+        <apex:pageBlock TItle="Bottle REST Edit" >
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!mySave}"/>
+            </apex:pageBlockButtons>
+            
+            <apex:pageBlockSection columns="1" title="Information">
+                <apex:inputField value="{!btl_obj.Name__c}"/>
+                <apex:inputField value="{!btl_obj.Quantity__c}"/>
+                <apex:inputField value="{!btl_obj.Cost__c}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock rendered="{!view}">    {!responses}    </apex:pageBlock>
+    </apex:form>
+</apex:page>

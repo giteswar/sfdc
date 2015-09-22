@@ -1,0 +1,5 @@
+<apex:page >
+    <p>Test Before</p>
+    <apex:include pageName="onepageincludeanoth"/>
+    <p>Test After</p>
+</apex:page>

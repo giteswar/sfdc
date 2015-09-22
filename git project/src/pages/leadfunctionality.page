@@ -1,0 +1,24 @@
+<apex:page controller="Pagefunlty" showheader="false">
+ <apex:form id="frm">
+  <apex:pageBlock >
+   <apex:pageBlockSection >
+   <apex:pageBlockTable var="wr" value="{!wrapper}">
+ <apex:column >
+  <apex:facet name="header">
+  <apex:inputCheckbox value="{!multiselectcheck}" >
+ <apex:actionsupport event="onclick" action="{!multiselect}" reRender="frm">
+</apex:actionsupport>
+  </apex:inputcheckbox>
+ </apex:facet>
+ <apex:inputCheckbox value="{!wr.eachcheck}" >
+ </apex:inputCheckbox>
+ </apex:column>
+ <apex:column value="{!wr.field.name}" headerValue="LeadName"/>
+  <apex:column value="{!wr.field.Phone}" headerValue="Phone"/>
+  
+ </apex:pageBlockTable> 
+    
+   </apex:pageBlockSection>
+  </apex:pageBlock>
+ </apex:form>
+</apex:page>

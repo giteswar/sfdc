@@ -1,0 +1,44 @@
+<apex:page controller="groupwisedisplay" sidebar="false" title="Displaying Related Records In A Group Wise" showHeader="false">
+ <!-- Begin Default Content REMOVE THIS -->
+ <h1> Displaying Related Records In A Group Wise </h1>
+ <br>===================================</br>
+ <apex:repeat value="{!StartHere}" var="gp">
+   <li>
+ <strong>
+ <apex:outputText style="color:blue;" value="{!gp.acc.Name}"/>
+ </strong>
+    <ul>
+     <apex:repeat value="{!gp.con}" var="p">
+      <li> (Contact) &nbsp;
+       <apex:outputText style="color:green" value="{!p.FirstName}"/> &nbsp;
+       <apex:outputText style="color:green;" value="{!p.LastName}"/>
+    <ul >
+     <li ><ol>
+      (Case)<apex:repeat value="{!p.Cases}" var="child">
+     <li >
+      <apex:outputText style="color:gray;" value="{!child.Subject}"/>
+     </li>
+     </apex:repeat>
+    </ol></li>
+ </ul>
+ </li>
+ <br></br>
+ </apex:repeat>
+ </ul>
+ <ul>
+ <apex:repeat value="{!gp.opp}" var="p">
+ <li> (Opportunity) &nbsp;
+ <apex:outputText style="color:red" value="{!p.Name}"/>
+ <ul>
+ <apex:outputLabel value="Close Date:" for="out1"/>
+ <apex:outputText value="{!p.CloseDate}" id="out1"/> <br>
+ <apex:outputLabel value="Stage:" for="out2"/>
+ <apex:outputText value="{!p.StageName}" id="out2"/></br>
+ </ul>
+ </li>
+     <br></br>
+     </apex:repeat>
+    </ul>
+   </li>
+ </apex:repeat>
+ </apex:page>

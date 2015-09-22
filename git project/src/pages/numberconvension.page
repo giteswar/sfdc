@@ -1,0 +1,29 @@
+<apex:page controller="NumberSystem" sidebar="false">
+ <apex:form >
+  <h1> Indian(Vedic) &amp; International Number System - In Word Format </h1>
+  <br/><br/><br/>
+ 
+  <apex:outputLabel for="txt1" value="Enter Number:"/>
+  <apex:inputText value="{!num}" id="txt1" size="17" />
+  <br/><br/>
+ 
+  <apex:selectRadio border="0" legendText="Pick The Conversion Format" value="{!selectedValue}" layout="pageDirection" >
+     <apex:selectOption itemLabel="Indian(Vedic) Number System " itemvalue="Indian" />
+     <apex:selectOption itemLabel="International Number System" itemvalue="International" />
+  </apex:selectRadio>
+ 
+  <apex:commandButton value="Convert" action="{!NumConvert}" reRender="outpan" status="actstatusId"/>
+ 
+  <apex:actionStatus id="actstatusId" >
+     <apex:facet name="start">
+        <img src="/img/loading.gif"/>
+     </apex:facet>
+  </apex:actionStatus>
+ 
+   &nbsp;   
+  <apex:outputPanel id="outpan">
+  <b> {!result} </b>
+  </apex:outputPanel>
+ 
+ </apex:form>
+</apex:page>

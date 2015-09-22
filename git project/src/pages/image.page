@@ -1,0 +1,33 @@
+<apex:page controller="Photo">
+ <apex:form id="pb1">
+  <apex:pageBlock >
+   <apex:pageblockSection >
+    <apex:image value="http://3.bp.blogspot.com/-6nSXGp_QPqs/UhBNWR9C0eI/AAAAAAAAoyU/4CqWqJ8FzXY/s1600/Prabhas+HD+Wallpapers+2.jpg" width="500" height="400"/>
+   </apex:pageblockSection>
+  </apex:pageBlock>
+  
+  <apex:pageBlock >
+   <apex:pageblockSection >
+    
+   <apex:pageBlockSectionItem >
+   like:<apex:inputcheckbox value="{!photos.like__c}"/>
+   </apex:pageBlockSectionItem>
+   <apex:pageblockSectionItem >
+    comment:<apex:inputtext value="{!photos.comment__c}">
+    <apex:actionSupport event="onchange" action="{!data}" />
+    </apex:inputtext>
+    </apex:pageblockSectionItem>
+   
+   </apex:pageblockSection>
+  </apex:pageBlock>
+  
+  <apex:pageBlock id="pb2" >
+   <apex:pageblockSection >
+    <apex:dataList var="dl" value="{!photos1}">
+     <apex:outputText value="{!dl.comment__c}"/>
+    
+    </apex:dataList>
+   </apex:pageblockSection>
+  </apex:pageBlock>
+ </apex:form>
+</apex:page>

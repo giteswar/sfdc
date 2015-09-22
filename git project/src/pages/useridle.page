@@ -1,0 +1,39 @@
+<apex:page controller="Userclass">
+ <apex:form id="fmresh">
+  <apex:pageBlock >
+  <apex:actionFunction name="idlesave" action="{!insertData}" reRender="fmresh"/>
+   <apex:pageBlockSection >
+     <apex:inputField value="{!fields.Name__c}"/>
+     <apex:inputField value="{!fields.Cost__c}"/>
+     <apex:inputField value="{!fields.Quantity__c}"/>
+   </apex:pageBlockSection>
+   <apex:commandButton value="javascript" onclick="function()"/>
+  </apex:pageBlock>
+  
+ </apex:form>
+ <script type="text/javascript">
+var idleTime = 0;
+$(document).ready(function () {
+    //Increment the idle time counter every minute.
+    var idleInterval = setInterval(timerIncrement, 6000); // 6 second
+
+    //Zero the idle timer on mouse movement.
+    $(this).mousemove(function (e) {
+        idleTime = 0;
+    });
+    $(this).keypress(function (e) {
+        idleTime = 0;
+    });
+});
+
+function timerIncrement() {
+    idleTime = idleTime + 1;
+    if (idleTime > 1) { // 1 minutes
+        window.location.reload();
+        alert('hi');
+        idlesave();
+        
+    }
+}
+</script>   
+</apex:page>

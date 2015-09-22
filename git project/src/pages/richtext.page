@@ -1,0 +1,6 @@
+<apex:page standardStylesheets="true" docType="html-5.0" sidebar="false">
+<apex:form >
+<c:customrtf targetclass="mytextarea" rendered="true"/>
+<apex:inputTextarea styleClass="mytextarea" richText="false"/>
+</apex:form>
+</apex:page>

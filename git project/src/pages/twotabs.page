@@ -1,0 +1,43 @@
+<apex:page Controller="TabController" showHeader="true">
+<apex:form >
+    <!-- Define Tab panel .css styles -->
+    <style>
+    .activeTab {background-color: #236FBD; color:blue; background-image:none}
+    .inactiveTab { background-color: lightgrey; color:black; background-image:none}
+    </style>
+            
+    <!-- Create Tab panel -->
+    <apex:tabPanel switchType="client" selectedTab="name2" id="AccountTabPanel"
+        tabClass="activeTab" inactiveTabClass="inactiveTab">
+        <apex:tab label="One" name="name1" id="tabOne">
+         <apex:pageBlock title="AccoutDetails"> 
+         name;<apex:inputField value="{!accfields.name}"/>
+         <apex:inputField value="{!accfields.phone}"/>
+         <apex:inputField value="{!accfields.type}"/>
+          <apex:pageBlockTable value="{!acclist}" var="acc">
+           <apex:column value="{!acc.name}"/>
+           <apex:column value="{!acc.phone}"/>
+           <apex:column value="{!acc.billingaddress}"/>
+           <apex:column value="{!acc.type}"/>
+          </apex:pageBlockTable>
+         </apex:pageblock>
+         
+         <apex:pageBlock title="contactdetails">
+         
+         <apex:inputField value="{!confields.lastname}"/>
+         <apex:inputField value="{!confields.email}"/>
+          <!--<apex:pageBlockTable value="{!conlist}" var="con">
+           
+           <apex:column value="{!con.phone}"/>
+           <apex:column value="{!con.email}"/>
+          </apex:pageBlockTable>-->
+          
+         </apex:pageblock>
+         <apex:commandButton value="save" action="{!saveRecord}"/>
+        </apex:tab>
+        <apex:tab label="Two" name="name2" id="tabTwo">
+        
+         </apex:tab>
+    </apex:tabPanel>
+  </apex:form>
+</apex:page>

@@ -1,0 +1,62 @@
+<apex:page Controller="AccountTaskClass7" sidebar="false">  
+  <style type="text/css">  
+  .popup  
+  {  
+  background-color: pink;  
+  border-width: 2px;  
+  border-style: solid;  
+  z-index: 9999;  
+  left: 50%;  
+  padding:10px;  
+  position: absolute;  
+  width: 400px;  
+  margin-left: -250px;  
+  top:80px;  
+  }  
+  .popupBg  
+  {  
+  background-color:yellow;  
+  opacity: 0.20;  
+  filter: alpha(opacity = 70);  
+  position: absolute;  
+  width: 100%;  
+  height: 100%;  
+  top: 0;  
+  left: 0;  
+  z-index: 9998;  
+  }  
+  </style>  
+  <apex:form id="form">  
+  <apex:pageblock id="pb">   
+  <apex:pageBlockTable id="pbt" value="{!getAcountt}" var="act">  
+  <apex:column headerValue="Account Name">  
+  <apex:outputText value="{!act.name}"></apex:outputText>  
+  </apex:column>  
+  <apex:column headerValue="Detail">  
+  <apex:outputPanel >  
+  <apex:actionSupport event="onclick" action="{!detailPage}" rerender="popup,pb">  
+  <input type="radio" name="det" />  
+  <apex:param value="{!act.id}" assignTo="{!id}" name="id"/>  
+  </apex:actionSupport>  
+  </apex:outputPanel>  
+  </apex:column>  
+  </apex:pageBlockTable>  
+ </apex:pageblock>  
+ <!--popup code starts-->  
+  <apex:outputPanel id="popup">  
+  <apex:outputPanel styleClass="popupBg" layout="block" rendered="{!displayPopUp}"/>  
+  <apex:outputPanel styleClass="popup" layout="block" rendered="{!displayPopUp}">  
+  <apex:messages />  
+  <center><h2>{!act_name} Account Information</h2></center>  
+  <apex:panelGrid columns="2" >  
+  <apex:outputLabel value="Account Name"/><apex:outputText value="{!act_name}" />  
+  <apex:outputLabel value="Number of Employee"/><apex:outputText value="{!act_noe}" />  
+  <apex:outputLabel value="Industry"/><apex:outputText value="{!act_ind}" />  
+  <apex:outputLabel value="Annual Revenue"/><apex:outputText value="{!act_annual_rev}" />  
+  <apex:commandButton value="cancel" action="{!closePopup}" rerender="popup,pb"/>  
+  </apex:panelGrid>  
+  </apex:outputPanel>  
+  </apex:outputPanel>  
+ <!-- end of popup code-->  
+  </apex:form>  
+ </apex:page>
